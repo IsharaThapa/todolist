@@ -15,12 +15,14 @@ use App\Http\Controllers\TaskController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+// Route::get('/', [TaskController::class, 'index']);
+// Route::post('/task', [TaskController::class, 'store'])->name('task.store');
+// Route::patch('/task/{id}', [TaskController::class, 'update'])->name('task.update');
+// Route::delete('/task/{id}', [TaskController::class, 'destroy'])->name('task.delete');
 
 Route::get('/', [TaskController::class, 'index']);
-Route::post('/task', [TaskController::class, 'store'])->name('task.store');
-Route::patch('/task/{id}', [TaskController::class, 'update'])->name('task.update');
-Route::delete('/task/{id}', [TaskController::class, 'destroy'])->name('task.delete');
-
+Route::resource('task', TaskController::class)->only(['index', 'store', 'update', 'destroy']);
